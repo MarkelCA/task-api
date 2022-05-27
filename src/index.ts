@@ -5,7 +5,9 @@ import express from 'express';
 const app: express.Application = express();
  
 // Take a port 3000 for running server.
-const port: number = 5000;
+const port: number = process.env.PORT == undefined 
+    ? 5000 
+    : parseInt(process.env.PORT);
  
 // Handling '/' Request
 app.get('/', (_req, _res) => {
