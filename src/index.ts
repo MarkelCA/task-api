@@ -1,6 +1,6 @@
 // Import the express in typescript file
 import express from 'express';
-import Task from './model/Task';
+import tasks from './res/tasks';
  
 // Initialize the express engine
 const app: express.Application = express();
@@ -12,12 +12,7 @@ const port: number = process.env.PORT == undefined
  
 // Handling '/' Request
 app.get('/', (_req, _res) => {
-    const t : Task = {id: 1, title:'title',description:'This is my description.', tags:[
-        {
-            id:4, tagName:"Programacion"
-        }
-    ]}
-    _res.json(t);
+    _res.json(tasks);
     //_res.send("TypeScript With Expresss");
 });
  
