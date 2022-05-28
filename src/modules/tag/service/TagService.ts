@@ -1,8 +1,9 @@
+import Task from "../../task/entity/Task";
 import Tag from "../entity/Tag";
 
 interface TagService {
-    getTag()   : Tag[];
-    getTags(id : number) : Tag | undefined
+    getTags() : Tag[];
+    getTag(id : number) : Tag 
     createTag() : boolean;
     updateTag() : boolean;
 }

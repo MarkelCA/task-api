@@ -5,7 +5,7 @@ class CategoryJsonService implements CategoryService {
     getCategories(): Category[] {
         throw new Error("Method not implemented.");
     }
-    getCategory(): Category | null {
+    getCategory(): Category {
         throw new Error("Method not implemented.");
     }
 
