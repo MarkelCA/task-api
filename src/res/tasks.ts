@@ -1,4 +1,4 @@
-import Task from '../model/Task'
+import Task from '../modules/task/entity/Task'
 const exampleTask : Task = 
     {
         id:1,
