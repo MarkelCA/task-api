@@ -4,15 +4,17 @@
         "id":1,
         "title": "Do shopping",
         "completed": false,
-        "category": 1,
+        "category": "personal",
+        "date" : "2022-05-03 21:20:24",
         "description": "Este es el body de la task y me puedo explayar más",
         "tags": [1]
     },
     {
         "id":2,
         "title": "Meet Steve",
-        "completed": false,
-        "category": 2,
+        "completed": true,
+        "category": "ocio",
+        "date" : "2022-05-25 13:23:25",
         "description": "Este es el body de la task y me puedo explayar más",
         "tags": [2, 3]
     }

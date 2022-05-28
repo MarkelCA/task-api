@@ -1,7 +1,7 @@
 import Category from '../entity/Category'
 interface CategoryService {
     getCategories() : Category[]
-    getCategory()   : Category 
+    getCategory(machineName : string)   : Category 
 }
 
 export default CategoryService

@@ -1,16 +1,22 @@
 import Task from '../entity/Task';
 import TaskService from './TaskService';
-import * as taskJson from '../../../res/tasks.json'
+//import * as taskJson from '../../../res/tasks.json'
 import TagService from '../../tag/service/TagService';
-import {TagsJsonService} from '../../tag/service/TagJsonService';
+import CategoryService from '../../category/service/CategoryService';
+import {TaskJson} from '../entity/TaskJson';
 
 export class TaskJsonService implements TaskService {
     private tasks : Task[]
     private tagService : TagService;
+    private categoryService : CategoryService;
 
-    public constructor() {
-        this.tasks = [...taskJson.tasks]
-        this.tagService = new TagsJsonService();
+    public constructor(jsonTasksFile : TaskJson,
+                       categoryService : CategoryService,
+                       tagService : TagService
+                      ) {
+        this.tasks = [...jsonTasksFile.tasks]
+        this.tagService = tagService;
+        this.categoryService = categoryService;
     }
 
     getTasks(): Task[] {
@@ -29,6 +35,7 @@ export class TaskJsonService implements TaskService {
             throw new Error('Task not found with this id');
 
         result.tags  = result.tags.map((id : number) => this.tagService.getTag(id))
+        result.category = this.categoryService.getCategory( result.category )
 
         return result;
     }

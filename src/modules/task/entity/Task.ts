@@ -5,6 +5,7 @@ export default interface Task {
     readonly id  : number
     title        : String,
     completed    : boolean,
+    date         : string,
     category     : Category
     description? : String,
     tags         : Tag[]

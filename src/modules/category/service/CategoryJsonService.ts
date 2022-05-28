@@ -1,12 +1,26 @@
 import Category from "../entity/Category";
 import CategoryService from "./CategoryService";
+import {CategoryJson} from "../entity/CategoryJson";
 
-class CategoryJsonService implements CategoryService {
+export class CategoryJsonService implements CategoryService {
+   private categories : Category[] 
+    public constructor(categoriesJson : CategoryJson) {
+        this.categories = categoriesJson.categories
+
+    }
+
     getCategories(): Category[] {
         throw new Error("Method not implemented.");
     }
-    getCategory(): Category {
-        throw new Error("Method not implemented.");
+    getCategory(machine_name: string): Category {
+        const foundCategory = this.categories.find((category) => {
+            return category.machine_name ==  machine_name;
+        })
+
+        if(foundCategory == undefined)
+            throw new Error('Category not found with this id');
+
+        return foundCategory;
     }
 
 }

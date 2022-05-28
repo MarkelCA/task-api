@@ -1,12 +1,11 @@
 import Tag from "../entity/Tag";
 import TagService from "./TagService";
-import * as tagsJson from '../../../res/tags.json'
-import Task from "../../task/entity/Task";
+import {TagJson} from "../entity/TagJson";
 
 export class TagsJsonService implements TagService {
     private tags : Tag[];
 
-    public constructor() {
+    public constructor(tagsJson : TagJson) {
         this.tags = [...tagsJson.tags]
     }
     

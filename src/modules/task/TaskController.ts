@@ -7,12 +7,13 @@ export default class TaskController {
     private service : TaskService;
 
 
-    public constructor(private app : Application) { 
-        this.service = new TaskJsonService()
+    public constructor(private app : Application, service : TaskService) { 
+        this.service = service
     }
 
     public init() {
-        this.app.get('/task', (_req, _res) => { this.getTasks(_req, _res)});
+        this.app.get('/tasks',     (_req, _res) => { this.getPendindTasks(_req, _res)});
+        this.app.get('/history',  (_req, _res) => { this.getCompletedTasks(_req, _res)});
         this.app.get('/task/:id', (_req, _res) => { this.getTask(_req, _res)});
     }
 
@@ -21,13 +22,23 @@ export default class TaskController {
         _res.json(tasks);
     }
 
+    private getPendindTasks(req : Request, res : Response) {
+        const result = this.service.getTasks().filter((task) => task.completed === false)
+        res.json(result);
+    }
+
+    private getCompletedTasks(req : Request, res : Response) {
+        const result = this.service.getTasks().filter((task) => task.completed === true)
+        res.json(result);
+    }
+
     private getTask(req : Request, res : Response) {
         const { id } = req.params
         try {
             const task = this.service.getTask(parseInt(id));
             res.json(task)
         } catch(e) {
-            res.json("Couldn't find a Task with this id.")
+            res.json("Couldn't find this task.")
         }
     }
 
