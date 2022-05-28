@@ -2,10 +2,13 @@
 import express from 'express';
 import tasks from './res/tasks';
 import TaskController from './modules/task/TaskController'
+import cors from 'cors'
  
 // Initialize the express engine
 const app: express.Application = express();
- 
+
+app.use(cors());
+
 const taskController = new TaskController(app);
 taskController.init();
 
@@ -15,10 +18,6 @@ const port: number = process.env.PORT == undefined
     : parseInt(process.env.PORT);
  
 // Handling '/' Request
-app.get('/', (_req, _res) => {
-    _res.json(tasks);
-    //_res.send("TypeScript With Expresss");
-});
  
 // Server setup
 app.listen(port, () => {

@@ -12,8 +12,8 @@ export default class TaskController {
     }
 
     public init() {
-        this.app.get('/', (_req, _res) => { this.getTasks(_req, _res)});
-        this.app.get('/:id', (_req, _res) => { this.getTask(_req, _res)});
+        this.app.get('/task', (_req, _res) => { this.getTasks(_req, _res)});
+        this.app.get('/task/:id', (_req, _res) => { this.getTask(_req, _res)});
     }
 
     private getTasks(_req : Request, _res : Response) {
@@ -27,7 +27,7 @@ export default class TaskController {
             const task = this.service.getTask(parseInt(id));
             res.json(task)
         } catch(e) {
-            res.json("Task not found")
+            res.json("Couldn't find a Task with this id.")
         }
     }
 

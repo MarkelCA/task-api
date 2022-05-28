@@ -14,7 +14,6 @@ export class TaskJsonService implements TaskService {
     }
 
     getTask(id: number): Task {
-
         const foundTask = this.tasks.find((task) =>  task.id == id )
 
         if(foundTask == undefined)
