@@ -6,7 +6,6 @@ import TaskService from './modules/task/service/TaskService';
 import * as taskJson from './res/tasks.json'
 import * as categoriesJson from './res/categories.json'
 import * as tagsJson from './res/tags.json'
-import {TaskJsonServicebuilder} from './modules/task/TaskServiceBuilder';
 import TagController from './modules/tag/TagController';
 import { TagsJsonService } from './modules/tag/service/TagJsonService';
 import CategoryService from './modules/category/service/CategoryService';
@@ -20,14 +19,6 @@ const app: express.Application = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
-
-//const taskServiceBuilder : TaskJsonServicebuilder = new TaskJsonServicebuilder(tagsJson, categoriesJson, taskJson) ;
-
-
-app.post('/handle',(request,response) => {
-    console.log(request.body);
-    response.json('oo')
-});
 
 const categoryService : CategoryService = new CategoryJsonService(categoriesJson);
 const categoryController : CategoryController = new CategoryController(app, categoryService)

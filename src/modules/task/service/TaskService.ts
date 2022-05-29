@@ -4,7 +4,7 @@ interface TaskService {
     getTasks()   : Task[];
     getTask(id : number) : Task
     createTask(task : object) : boolean;
-    updateTask() : boolean;
+    updateTask(task : Task) : boolean;
 }
 
 export default TaskService;

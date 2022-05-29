@@ -15,6 +15,7 @@ export default class TaskController {
         this.app.get('/history',   (_req : Request, _res : Response) => { this.getCompletedTasks(_req, _res)});
         this.app.get('/tasks/:id', (_req : Request, _res : Response) => { this.getTask(_req, _res) });
         this.app.post('/tasks',    (_req : Request, _res : Response) => { this.newTask(_req, _res) });
+        this.app.put('/tasks/:id',    (_req : Request, _res : Response) => { this.updateTask(_req, _res) });
     }
 
     private getTasks(_req : Request, _res : Response) {
@@ -38,14 +39,22 @@ export default class TaskController {
             const task = this.service.getTask(parseInt(id));
             res.json(task)
         } catch(e) {
+            res.status(404)
             res.json("Couldn't find this task.")
         }
     }
 
     private newTask(req : Request, res : Response) {
         const { body : task } = req
-        this.service.createTask(task);
-        res.json('uu')
+        const result = this.service.createTask(task);
+        res.json(result === true ? 'Task created' : "Couldn't update the task")
+    }
+
+    private updateTask(req : Request, res : Response) {
+        const { body : task } = req
+        const result = this.service.updateTask(task);
+        res.json(result === true ? 'Task updated' : "Couldn't update the task")
+
     }
 
 }
