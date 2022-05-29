@@ -16,6 +16,8 @@ export default class TaskController {
         this.app.get('/tasks/:id', (_req : Request, _res : Response) => { this.getTask(_req, _res) });
         this.app.post('/tasks',    (_req : Request, _res : Response) => { this.newTask(_req, _res) });
         this.app.put('/tasks/:id',    (_req : Request, _res : Response) => { this.updateTask(_req, _res) });
+        this.app.delete('/tasks/:id',    (_req : Request, _res : Response) => { this.deleteTask(_req, _res) });
+
     }
 
     private getTasks(_req : Request, _res : Response) {
@@ -55,6 +57,12 @@ export default class TaskController {
         const result = this.service.updateTask(task);
         res.json(result === true ? 'Task updated' : "Couldn't update the task")
 
+    }
+    
+    private deleteTask(req : Request, res : Response) {
+        const {id} = req.params
+        this.service.deleteTask(parseInt(id));
+        res.json('Task deleted')
     }
 
 }

@@ -81,4 +81,9 @@ export class TaskJsonService implements TaskService {
 
     }
 
+    deleteTask(id: number): boolean {
+        this.tasks = this.tasks.filter((task) => task.id != id)
+        return true;
+    }
+
 }
