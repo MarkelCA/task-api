@@ -1,13 +1,8 @@
 import Category from "../entity/Category";
 import CategoryService from "./CategoryService";
-import {CategoryJson} from "../entity/CategoryJson";
 
 export class CategoryJsonService implements CategoryService {
-   private categories : Category[] 
-    public constructor(categoriesJson : CategoryJson) {
-        this.categories = categoriesJson.categories
-
-    }
+    public constructor(private categories : Category[]) { }
 
     getCategories(): Category[] {
         return [...this.categories]

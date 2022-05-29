@@ -13,6 +13,7 @@ export default class TaskController {
     public init() {
         this.app.get('/tasks',     (_req : Request, _res : Response) => { this.getPendindTasks(_req, _res)});
         this.app.get('/history',   (_req : Request, _res : Response) => { this.getCompletedTasks(_req, _res)});
+        this.app.get('/tasks/all', (_req : Request, _res : Response) => { this.getTasks(_req, _res)});
         this.app.get('/tasks/:id', (_req : Request, _res : Response) => { this.getTask(_req, _res) });
         this.app.post('/tasks',    (_req : Request, _res : Response) => { this.newTask(_req, _res) });
         this.app.put('/tasks/:id',    (_req : Request, _res : Response) => { this.updateTask(_req, _res) });

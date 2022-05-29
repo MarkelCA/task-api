@@ -3,11 +3,8 @@ import TagService from "./TagService";
 import {TagJson} from "../entity/TagJson";
 
 export class TagsJsonService implements TagService {
-    private tags : Tag[];
 
-    public constructor(tagsJson : TagJson) {
-        this.tags = [...tagsJson.tags]
-    }
+    public constructor(private tags : Tag[]) {}
     
     getTags(): Tag[] {
         return [...this.tags];

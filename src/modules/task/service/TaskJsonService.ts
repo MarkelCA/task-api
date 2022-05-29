@@ -5,18 +5,11 @@ import CategoryService from '../../category/service/CategoryService';
 import {TaskJson} from '../entity/TaskJson';
 
 export class TaskJsonService implements TaskService {
-    private tasks : Task[]
-    private tagService : TagService;
-    private categoryService : CategoryService;
 
-    public constructor(jsonTasksFile : TaskJson,
-                       categoryService : CategoryService,
-                       tagService : TagService
-                      ) {
-        this.tasks = [...jsonTasksFile.tasks]
-        this.tagService = tagService;
-        this.categoryService = categoryService;
-    }
+    public constructor(
+        private tasks : Task[],
+       private categoryService : CategoryService,
+       private tagService : TagService) {}
 
     getTasks(): Task[] {
         //this.createTask();
