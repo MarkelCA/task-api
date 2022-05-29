@@ -1,6 +1,5 @@
 import {Application, Request, Response} from 'express'
 import Task from './entity/Task';
-import {TaskJsonService} from './service/TaskJsonService';
 import TaskService from './service/TaskService';
 
 export default class TaskController {
@@ -12,9 +11,10 @@ export default class TaskController {
     }
 
     public init() {
-        this.app.get('/tasks',     (_req, _res) => { this.getPendindTasks(_req, _res)});
-        this.app.get('/history',  (_req, _res) => { this.getCompletedTasks(_req, _res)});
-        this.app.get('/task/:id', (_req, _res) => { this.getTask(_req, _res)});
+        this.app.get('/tasks',     (_req : Request, _res : Response) => { this.getPendindTasks(_req, _res)});
+        this.app.get('/history',   (_req : Request, _res : Response) => { this.getCompletedTasks(_req, _res)});
+        this.app.get('/tasks/:id', (_req : Request, _res : Response) => { this.getTask(_req, _res) });
+        this.app.post('/tasks',    (_req : Request, _res : Response) => { this.newTask(_req, _res) });
     }
 
     private getTasks(_req : Request, _res : Response) {
@@ -40,6 +40,12 @@ export default class TaskController {
         } catch(e) {
             res.json("Couldn't find this task.")
         }
+    }
+
+    private newTask(req : Request, res : Response) {
+        const { body : task } = req
+        this.service.createTask(task);
+        res.json('uu')
     }
 
 }

@@ -20,6 +20,7 @@ export class TaskJsonService implements TaskService {
     }
 
     getTasks(): Task[] {
+        //this.createTask();
         return this.tasks.map((task) => this.getTask(task.id));
     }
 
@@ -34,14 +35,22 @@ export class TaskJsonService implements TaskService {
         if(foundTask == undefined)
             throw new Error('Task not found with this id');
 
-        result.tags  = result.tags.map((id : number) => this.tagService.getTag(id))
+        if(result.tags)
+            result.tags  = result.tags.map((id : number) => this.tagService.getTag(id))
+
         result.category = this.categoryService.getCategory( result.category )
 
         return result;
     }
 
-    createTask(): boolean {
-        throw new Error('Method not implemented.');
+    createTask(task : object): boolean {
+        const maxId = this.tasks[this.tasks.length - 1].id
+        const newTask : Task = <Task>{id:maxId + 1, ...task}
+        console.log(newTask)
+
+        this.tasks.push(newTask);
+
+        return true;
     }
 
     updateTask(): boolean {

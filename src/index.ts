@@ -7,16 +7,39 @@ import * as taskJson from './res/tasks.json'
 import * as categoriesJson from './res/categories.json'
 import * as tagsJson from './res/tags.json'
 import {TaskJsonServicebuilder} from './modules/task/TaskServiceBuilder';
+import TagController from './modules/tag/TagController';
+import { TagsJsonService } from './modules/tag/service/TagJsonService';
+import CategoryService from './modules/category/service/CategoryService';
+import {CategoryJsonService} from './modules/category/service/CategoryJsonService';
+import {TaskJsonService} from './modules/task/service/TaskJsonService';
+import CategoryController from './modules/category/CategoryController';
+import bodyParser from 'body-parser';
 
 const app: express.Application = express();
 
 app.use(cors());
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
 
-const taskServiceBuilder : TaskJsonServicebuilder = new TaskJsonServicebuilder(tagsJson, categoriesJson, taskJson) ;
-const taskService : TaskService = taskServiceBuilder.build();
+//const taskServiceBuilder : TaskJsonServicebuilder = new TaskJsonServicebuilder(tagsJson, categoriesJson, taskJson) ;
 
+
+app.post('/handle',(request,response) => {
+    console.log(request.body);
+    response.json('oo')
+});
+
+const categoryService : CategoryService = new CategoryJsonService(categoriesJson);
+const categoryController : CategoryController = new CategoryController(app, categoryService)
+categoryController.init();
+
+const tagService : TagsJsonService = new TagsJsonService(tagsJson);
+const tagController : TagController = new TagController(app, tagService)
+tagController.init();
+
+
+const taskService : TaskService = new TaskJsonService(taskJson, categoryService, tagService)
 const taskController = new TaskController(app,taskService);
-
 taskController.init();
 
 // Take a port 3000 for running server.

@@ -10,7 +10,7 @@ export class CategoryJsonService implements CategoryService {
     }
 
     getCategories(): Category[] {
-        throw new Error("Method not implemented.");
+        return [...this.categories]
     }
     getCategory(machine_name: string): Category {
         const foundCategory = this.categories.find((category) => {

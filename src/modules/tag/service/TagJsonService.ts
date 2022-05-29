@@ -10,7 +10,7 @@ export class TagsJsonService implements TagService {
     }
     
     getTags(): Tag[] {
-        throw new Error("Method not implemented.");
+        return [...this.tags];
     }
 
     getTag(id: number): Tag {

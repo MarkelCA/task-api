@@ -3,7 +3,7 @@ import Task from "../entity/Task";
 interface TaskService {
     getTasks()   : Task[];
     getTask(id : number) : Task
-    createTask() : boolean;
+    createTask(task : object) : boolean;
     updateTask() : boolean;
 }
 
