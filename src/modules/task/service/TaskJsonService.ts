@@ -2,7 +2,6 @@ import Task from '../entity/Task';
 import TaskService from './TaskService';
 import TagService from '../../tag/service/TagService';
 import CategoryService from '../../category/service/CategoryService';
-import {TaskJson} from '../entity/TaskJson';
 
 export class TaskJsonService implements TaskService {
 

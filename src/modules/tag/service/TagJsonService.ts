@@ -1,6 +1,5 @@
 import Tag from "../entity/Tag";
 import TagService from "./TagService";
-import {TagJson} from "../entity/TagJson";
 
 export class TagsJsonService implements TagService {
 
