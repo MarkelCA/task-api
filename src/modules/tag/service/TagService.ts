@@ -1,4 +1,3 @@
-import Task from "../../task/entity/Task";
 import Tag from "../entity/Tag";
 
 interface TagService {
