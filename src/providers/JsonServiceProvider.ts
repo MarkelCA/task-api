@@ -9,7 +9,7 @@ export class JsonServiceProvider implements ServiceProvider {
     private categoriesJsonService : CategoryJsonService;
     private tasksJsonService : TaskJsonService;
 
-    public constructor(private dataProvider : JsonDataProvider) {
+    public constructor(dataProvider : JsonDataProvider) {
         this.tagsJsonService       = new TagsJsonService(dataProvider.getTags())
         this.categoriesJsonService = new CategoryJsonService(dataProvider.getCategories())
 
@@ -29,7 +29,7 @@ export class JsonServiceProvider implements ServiceProvider {
     }
 
     getCategoryService(): CategoryJsonService {
-        return new CategoryJsonService(this.dataProvider.getCategories())
+        return this.categoriesJsonService;
     }
 
 }
